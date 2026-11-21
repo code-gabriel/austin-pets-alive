@@ -1,0 +1,71 @@
+---
+const nav = [
+  { label: 'Adopt', href: '#pets' },
+  { label: 'Foster', href: '#help' },
+  { label: 'Volunteer', href: '#help' },
+  { label: 'Get Pet Help', href: '#help' },
+  { label: 'About', href: '#impact' },
+];
+---
+<div class="campaign" role="region" aria-label="Current campaign">
+  <div class="wrap campaign-inner">
+    <p><strong>Wrap a Pet in 2X the Love.</strong> 200 gifts unlock a $20,000 match this season.</p>
+    <a href="#donate" class="campaign-link">Double my gift →</a>
+  </div>
+</div>
+<header class="site-header">
+  <div class="wrap bar">
+    <a href="/" class="logo" aria-label="Austin Pets Alive! home">
+      <span class="logo-mark" aria-hidden="true">APA!</span>
+      <span class="logo-text">Austin Pets Alive!</span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Main">
+      <ul>{nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}</ul>
+    </nav>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="#donate">Donate</a>
+      <details class="nav-mobile">
+        <summary aria-label="Open menu"><span></span><span></span><span></span></summary>
+        <nav aria-label="Mobile">
+          <ul>{nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}</ul>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+
+<style>
+  .campaign { background: var(--maroon-deep); color: #fff; font-size: .92rem; }
+  .campaign-inner { display: flex; gap: 12px 20px; justify-content: center; align-items: center; flex-wrap: wrap; padding: 10px 0; text-align: center; }
+  .campaign p { margin: 0; }
+  .campaign-link { color: var(--sun); font-weight: 700; text-decoration: none; }
+  .campaign-link:hover { text-decoration: underline; }
+
+  .site-header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.94); backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--line); }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 72px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-mark { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--orange); color: #fff; font-weight: 800; font-size: .95rem; letter-spacing: -.02em; }
+  .logo-text { font-weight: 800; font-size: 1.2rem; color: var(--maroon); letter-spacing: -.02em; }
+
+  .nav-desktop ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+  .nav-desktop a { display: block; padding: 8px 14px; border-radius: 999px; text-decoration: none; font-weight: 600; color: var(--ink); }
+  .nav-desktop a:hover { background: var(--cream); color: var(--maroon); }
+
+  .actions { display: flex; align-items: center; gap: 10px; }
+  .nav-mobile { display: none; position: relative; }
+  .nav-mobile summary { list-style: none; cursor: pointer; width: 44px; height: 44px; display: grid; place-content: center; gap: 5px; border-radius: 10px; border: 1px solid var(--line); }
+  .nav-mobile summary::-webkit-details-marker { display: none; }
+  .nav-mobile summary span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; }
+  .nav-mobile nav { position: absolute; right: 0; top: 54px; width: min(80vw, 280px); background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 20px 40px rgba(0,0,0,.12); padding: 8px; }
+  .nav-mobile ul { list-style: none; margin: 0; padding: 0; }
+  .nav-mobile a { display: block; padding: 12px 14px; border-radius: 10px; text-decoration: none; font-weight: 600; }
+  .nav-mobile a:hover { background: var(--cream); }
+
+  @media (max-width: 900px) {
+    .nav-desktop { display: none; }
+    .nav-mobile { display: block; }
+  }
+  @media (max-width: 420px) { .logo-text { display: none; } }
+</style>

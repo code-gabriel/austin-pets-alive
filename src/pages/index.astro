@@ -1,0 +1,230 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import pets from '../data/pets.json';
+import posts from '../data/posts.json';
+
+const img = (url: string, w: number) => `${url}?auto=format&fit=crop&w=${w}&q=70`;
+const fmt = (d: string) => new Date(d + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+const stats = [
+  { n: '140,000+', l: 'lives saved since 2008' },
+  { n: '7,831', l: 'adoptions in 2025' },
+  { n: '10,959', l: 'foster placements in 2025' },
+];
+const ways = [
+  { t: 'Adopt', d: 'Meet dogs, cats and more ready for a home today.', cta: 'See available pets', href: '#pets', icon: '♥' },
+  { t: 'Foster', d: 'Open your home for a few weeks. We cover supplies and vet care.', cta: 'Become a foster', href: '#', icon: '⌂' },
+  { t: 'Volunteer', d: 'Walk dogs, socialize cats, or help at events and thrift stores.', cta: 'Find a shift', href: '#', icon: '✦' },
+  { t: 'Give monthly', d: 'Constant Companions fund lifesaving care every single month.', cta: 'Join Constant Companions', href: '#donate', icon: '↻' },
+];
+---
+<Base>
+  <Header />
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <img class="hero-img" src={img('https://images.unsplash.com/photo-1450778869180-41d0601e046e', 1800)} alt="" fetchpriority="high" width="1800" height="1200" />
+      <div class="hero-scrim"></div>
+      <div class="wrap hero-content">
+        <span class="eyebrow hero-eyebrow">Keeping Austin No Kill</span>
+        <h1>We save the pets other shelters can't.</h1>
+        <p class="hero-lead">Austin Pets Alive! builds first-of-their-kind programs to end the killing of companion animals in Austin and beyond.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#pets">Adopt a pet</a>
+          <a class="btn btn-ghost" href="#donate">Donate</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT -->
+    <section id="impact" class="impact" aria-label="Our impact">
+      <div class="wrap stats">
+        {stats.map((s) => (
+          <div class="stat"><strong>{s.n}</strong><span>{s.l}</span></div>
+        ))}
+      </div>
+    </section>
+
+    <!-- WAYS TO HELP -->
+    <section id="help" class="section">
+      <div class="wrap">
+        <span class="eyebrow">Get involved</span>
+        <h2>Four ways to save a life</h2>
+        <p class="lead">Every animal we save depends on people in our community. Choose what fits your life.</p>
+        <div class="ways">
+          {ways.map((w) => (
+            <a class="way" href={w.href}>
+              <span class="way-icon" aria-hidden="true">{w.icon}</span>
+              <h3>{w.t}</h3>
+              <p>{w.d}</p>
+              <span class="link-arrow">{w.cta} →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED PETS -->
+    <section id="pets" class="section pets-section">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Ready for a home</span>
+            <h2>Meet our adoptable pets</h2>
+          </div>
+          <div class="pet-filters" aria-label="Browse by type">
+            <a href="#" class="chip">All dogs</a>
+            <a href="#" class="chip">All cats</a>
+            <a href="#" class="chip">Other animals</a>
+          </div>
+        </div>
+        <ul class="pets">
+          {pets.map((p) => (
+            <li class="pet">
+              <img src={img(p.img, 600)} alt={`${p.name}, a ${p.age} old ${p.sex.toLowerCase()} ${p.species.toLowerCase()}`} loading="lazy" width="600" height="450" />
+              <div class="pet-body">
+                <div class="pet-top">
+                  <h3>{p.name}</h3>
+                  <span class="tag">{p.species}</span>
+                </div>
+                <p class="pet-meta">{p.sex} · {p.age}</p>
+                <p>{p.blurb}</p>
+                <a href="#" class="link-arrow">Meet {p.name} →</a>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- DONATE -->
+    <section id="donate" class="donate">
+      <div class="wrap donate-inner">
+        <div>
+          <span class="eyebrow donate-eyebrow">Your gift, doubled</span>
+          <h2>Medical care for the animals most at risk</h2>
+          <p>Parvo puppies, neonatal kittens, cats with FeLV, dogs with behavior needs. Your donation goes to the pets other shelters turn away.</p>
+        </div>
+        <form class="give" onsubmit="return false" aria-label="Donation amount">
+          <fieldset>
+            <legend class="sr-only">Frequency</legend>
+            <div class="toggle">
+              <label><input type="radio" name="freq" checked /> <span>Monthly</span></label>
+              <label><input type="radio" name="freq" /> <span>One time</span></label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend class="sr-only">Amount</legend>
+            <div class="amounts">
+              {['$25', '$50', '$100', '$250'].map((a, i) => (
+                <label><input type="radio" name="amt" checked={i === 1} /> <span>{a}</span></label>
+              ))}
+            </div>
+          </fieldset>
+          <button class="btn btn-primary give-btn" type="submit">Donate now</button>
+          <p class="give-note">Secure giving · 4-star Charity Navigator rating · Give in tribute</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- NEWS -->
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Latest news</span>
+            <h2>From the blog</h2>
+          </div>
+          <a href="#" class="link-arrow">All stories →</a>
+        </div>
+        <div class="posts">
+          {posts.map((p) => (
+            <article class="post">
+              <img src={img(p.img, 700)} alt="" loading="lazy" width="700" height="420" />
+              <div class="post-body">
+                <p class="post-meta"><span class="tag">{p.tag}</span> <time datetime={p.date}>{fmt(p.date)}</time></p>
+                <h3><a href="#">{p.title}</a></h3>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .hero { position: relative; min-height: min(78vh, 720px); display: flex; align-items: flex-end; color: #fff; overflow: hidden; }
+  .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(31,15,13,.15) 0%, rgba(31,15,13,.55) 50%, rgba(60,22,19,.92) 100%); }
+  .hero-content { position: relative; padding: 120px 0 72px; }
+  .hero h1 { font-size: clamp(2.4rem, 6vw, 4.6rem); max-width: 14ch; font-weight: 800; }
+  .hero-eyebrow { color: var(--sun); }
+  .hero-lead { font-size: clamp(1.05rem, 1.6vw, 1.3rem); max-width: 52ch; opacity: .92; }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+  .hero .btn-ghost { color: #fff; }
+
+  .impact { background: var(--maroon); color: #fff; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .stat { padding: 36px 24px; display: flex; flex-direction: column; gap: 4px; border-left: 1px solid rgba(255,255,255,.15); }
+  .stat:first-child { border-left: 0; padding-left: 0; }
+  .stat strong { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--sun); line-height: 1; }
+  .stat span { opacity: .85; }
+  @media (max-width: 700px) {
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-left: 0; border-top: 1px solid rgba(255,255,255,.15); padding: 24px 0; }
+    .stat:first-child { border-top: 0; }
+  }
+
+  .ways { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 36px; }
+  .way { display: flex; flex-direction: column; padding: 28px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; background: #fff; transition: border-color .15s, transform .15s, box-shadow .15s; }
+  .way:hover { border-color: var(--orange); transform: translateY(-2px); box-shadow: 0 14px 30px rgba(132,51,46,.08); }
+  .way-icon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 12px; background: var(--cream); color: var(--orange-strong); font-size: 1.4rem; margin-bottom: 18px; }
+  .way h3 { font-size: 1.3rem; }
+  .way p { color: var(--muted); flex: 1; }
+
+  .pets-section { background: var(--cream); }
+  .pet-filters { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { padding: 8px 16px; border-radius: 999px; background: #fff; border: 1px solid var(--line); text-decoration: none; font-weight: 600; font-size: .95rem; }
+  .chip:hover { border-color: var(--maroon); color: var(--maroon); }
+  .pets { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+  .pet { background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); display: flex; flex-direction: column; }
+  .pet img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; height: auto; background: var(--line); }
+  .pet-body { padding: 20px 22px 24px; display: flex; flex-direction: column; flex: 1; }
+  .pet-body p { color: var(--muted); }
+  .pet-body .link-arrow { margin-top: auto; }
+  .pet-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .pet-top h3 { margin: 0; font-size: 1.35rem; }
+  .pet-meta { font-size: .95rem; margin: 4px 0 10px; }
+  .tag { display: inline-block; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--maroon); background: #f6e7e3; padding: 4px 10px; border-radius: 999px; }
+
+  .donate { background: linear-gradient(135deg, var(--maroon-deep), var(--maroon)); color: #fff; padding: clamp(56px, 8vw, 96px) 0; }
+  .donate-inner { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+  .donate-inner p { opacity: .9; max-width: 50ch; }
+  .donate-eyebrow { color: var(--sun); }
+  .give { background: #fff; color: var(--ink); border-radius: 20px; padding: 28px; box-shadow: 0 30px 60px rgba(0,0,0,.25); }
+  .give fieldset { border: 0; padding: 0; margin: 0 0 16px; }
+  .toggle, .amounts { display: grid; gap: 8px; }
+  .toggle { grid-template-columns: 1fr 1fr; background: var(--cream); padding: 4px; border-radius: 999px; }
+  .amounts { grid-template-columns: repeat(4, 1fr); }
+  .give label { position: relative; cursor: pointer; }
+  .give input { position: absolute; opacity: 0; inset: 0; }
+  .give label span { display: block; text-align: center; padding: 12px 8px; border-radius: 999px; font-weight: 700; border: 2px solid transparent; }
+  .amounts label span { border-color: var(--line); border-radius: 12px; }
+  .give input:checked + span { background: var(--maroon); color: #fff; border-color: var(--maroon); }
+  .give input:focus-visible + span { outline: 3px solid var(--sky); outline-offset: 2px; }
+  .give-btn { width: 100%; justify-content: center; font-size: 1.1rem; padding: 1em; cursor: pointer; font-family: inherit; }
+  .give-note { font-size: .85rem; color: var(--muted); text-align: center; margin: 14px 0 0; opacity: 1 !important; }
+  @media (max-width: 860px) { .donate-inner { grid-template-columns: 1fr; } }
+
+  .posts { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+  .post img { aspect-ratio: 5 / 3; object-fit: cover; width: 100%; height: auto; border-radius: var(--radius); background: var(--line); }
+  .post-body { padding-top: 16px; }
+  .post-meta { display: flex; gap: 10px; align-items: center; font-size: .9rem; color: var(--muted); margin-bottom: 8px; }
+  .post h3 { font-size: 1.25rem; }
+  .post h3 a { text-decoration: none; }
+  .post h3 a:hover { color: var(--maroon); text-decoration: underline; }
+</style>

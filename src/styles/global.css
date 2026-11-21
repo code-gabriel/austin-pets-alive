@@ -1,0 +1,61 @@
+/* Brand tokens pulled from austinpetsalive.org CSS (combined.min.css / rb.css) */
+:root {
+  --orange: #dc5928;        /* primary brand orange */
+  --orange-strong: #b9471d; /* AA-safe orange for buttons and text on white */
+  --maroon: #84332e;        /* brand maroon, used as the "serious" anchor color */
+  --maroon-deep: #5c211d;
+  --sun: #fac053;           /* brand yellow, accent only */
+  --sky: #06a7e0;
+  --leaf: #627e30;
+  --ink: #1f1a19;
+  --muted: #5d5654;
+  --line: #e7e1df;
+  --paper: #ffffff;
+  --cream: #f7f3f1;         /* derived from brand #f5f2f2 */
+  --radius: 14px;
+  --max: 1180px;
+  --font: "Figtree", "Neuzeit Grotesk", system-ui, -apple-system, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2, h3 { line-height: 1.12; letter-spacing: -0.02em; margin: 0 0 .5em; }
+h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); }
+p { margin: 0 0 1em; }
+
+.wrap { width: min(100% - 32px, var(--max)); margin-inline: auto; }
+.section { padding: clamp(56px, 8vw, 96px) 0; }
+.eyebrow {
+  display: inline-block; font-size: .8rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--orange-strong); margin-bottom: .75rem;
+}
+.section-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+.section-head h2 { margin: 0; }
+.lead { font-size: 1.15rem; color: var(--muted); max-width: 60ch; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: .5em; padding: .8em 1.4em;
+  border-radius: 999px; font-weight: 700; text-decoration: none; border: 2px solid transparent;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.btn-primary { background: var(--orange-strong); color: #fff; }
+.btn-primary:hover { background: var(--maroon); }
+.btn-ghost { border-color: currentColor; }
+.btn-ghost:hover { background: rgba(255,255,255,.12); }
+.link-arrow { font-weight: 700; color: var(--orange-strong); text-decoration: none; }
+.link-arrow:hover { text-decoration: underline; }
+
+:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; border-radius: 4px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: #fff; padding: 8px 14px; border-radius: 8px; z-index: 100; }
+.skip:focus { left: 16px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

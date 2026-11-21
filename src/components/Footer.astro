@@ -1,0 +1,73 @@
+---
+const cols = [
+  { h: 'Help pets', links: ['Adopt', 'Foster', 'Volunteer', 'Donate', 'Pet Help'] },
+  { h: 'About', links: ['Our Story', 'Programs', 'Our Numbers', 'Leadership', 'Careers'] },
+  { h: 'More', links: ['Events', 'Thrift Stores', 'News & Blog', 'Locations & Contact', 'Volunteer Login'] },
+];
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="wrap">
+    <div class="newsletter">
+      <div>
+        <h2>Get stories of lives saved</h2>
+        <p>One email a month. Urgent needs, success stories, and events.</p>
+      </div>
+      <form onsubmit="return false" class="nl-form">
+        <label for="nl-email" class="sr-only">Email address</label>
+        <input id="nl-email" type="email" placeholder="you@example.com" required />
+        <button class="btn btn-primary" type="submit">Sign up</button>
+      </form>
+    </div>
+
+    <div class="grid">
+      <div class="contact">
+        <p class="brand">Austin Pets Alive!</p>
+        <address>
+          1156 West Cesar Chavez<br />Austin, TX 78703
+        </address>
+        <p>Shelter hours: 12–6 PM, every day<br /><a href="tel:+15129616519">512-961-6519</a></p>
+        <ul class="social" aria-label="Social media">
+          <li><a href="https://www.facebook.com/austinpetsalive/">Facebook</a></li>
+          <li><a href="https://www.instagram.com/austinpetsalive/">Instagram</a></li>
+          <li><a href="https://www.youtube.com/austinpetsalive">YouTube</a></li>
+        </ul>
+      </div>
+      {cols.map((c) => (
+        <nav aria-label={c.h}>
+          <h3>{c.h}</h3>
+          <ul>{c.links.map((l) => <li><a href="#">{l}</a></li>)}</ul>
+        </nav>
+      ))}
+    </div>
+
+    <div class="legal">
+      <p>© {year} Austin Pets Alive! · 501(c)(3) nonprofit</p>
+      <p><a href="#">Privacy Policy</a> · <a href="#">Donor Privacy Policy</a></p>
+    </div>
+    <p class="proto-note">Redesign prototype. Not the official Austin Pets Alive! website.</p>
+  </div>
+</footer>
+
+<style>
+  .footer { background: #1f1716; color: #e9e2e0; padding: 64px 0 32px; }
+  .footer a { color: #e9e2e0; text-decoration: none; }
+  .footer a:hover { color: var(--sun); text-decoration: underline; }
+  .newsletter { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,.12); }
+  .newsletter h2 { font-size: 1.6rem; color: #fff; margin-bottom: .25em; }
+  .newsletter p { margin: 0; opacity: .8; }
+  .nl-form { display: flex; gap: 8px; flex: 1; max-width: 460px; min-width: 260px; }
+  .nl-form input { flex: 1; min-width: 0; padding: .8em 1.1em; border-radius: 999px; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.06); color: #fff; font: inherit; }
+  .nl-form button { cursor: pointer; font-family: inherit; }
+  .grid { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 32px; padding: 48px 0; }
+  .brand { font-weight: 800; font-size: 1.25rem; color: #fff; }
+  address { font-style: normal; margin-bottom: 1em; }
+  .footer h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: var(--sun); margin-bottom: 1em; }
+  .footer ul { list-style: none; margin: 0; padding: 0; }
+  .footer li { margin-bottom: .5em; }
+  .social { display: flex; gap: 16px; flex-wrap: wrap; }
+  .legal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: .9rem; opacity: .75; border-top: 1px solid rgba(255,255,255,.12); padding-top: 24px; }
+  .legal p { margin: 0; }
+  .proto-note { font-size: .8rem; opacity: .55; margin: 16px 0 0; }
+  @media (max-width: 860px) { .grid { grid-template-columns: 1fr 1fr; } .contact { grid-column: 1 / -1; } }
+</style>
