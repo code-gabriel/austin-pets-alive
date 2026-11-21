@@ -1,5 +1,5 @@
 ---
-import { links } from '../data/links';
+import { links, asset } from '../data/links';
 const nav = [
   { label: 'Adopt', href: links.adopt },
   { label: 'Foster', href: links.foster },
@@ -16,8 +16,8 @@ const nav = [
 </div>
 <header class="site-header">
   <div class="wrap bar">
-    <a href="/" class="logo">
-      <img src="/apa-logo.svg" alt="Austin Pets Alive! home" width="286" height="45" />
+    <a href={asset("/")} class="logo">
+      <img src={asset("/apa-logo.svg")} alt="Austin Pets Alive! home" width="286" height="45" />
     </a>
 
     <nav class="nav-desktop" aria-label="Main">

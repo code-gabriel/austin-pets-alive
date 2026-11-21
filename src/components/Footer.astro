@@ -1,5 +1,5 @@
 ---
-import { links } from '../data/links';
+import { links, asset } from '../data/links';
 const cols = [
   { h: 'Help pets', links: [['Adopt', links.adopt], ['Foster', links.foster], ['Volunteer', links.volunteer], ['Donate', links.donate], ['Pet Help', links.petHelp]] },
   { h: 'About', links: [['Our Story', links.ourStory], ['Programs', links.programs], ['Our Numbers', links.numbers], ['Leadership', links.leadership], ['Careers', links.careers]] },
@@ -23,7 +23,7 @@ const year = new Date().getFullYear();
 
     <div class="grid">
       <div class="contact">
-        <p class="brand"><img src="/apa-logo.svg" alt="Austin Pets Alive!" width="286" height="45" loading="lazy" /></p>
+        <p class="brand"><img src={asset("/apa-logo.svg")} alt="Austin Pets Alive!" width="286" height="45" loading="lazy" /></p>
         <address>
           1156 West Cesar Chavez<br />Austin, TX 78703
         </address>

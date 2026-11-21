@@ -34,3 +34,6 @@ export const links = {
 
 export const speciesLink = (species: string) =>
   species === 'Dog' ? links.adoptDogs : species === 'Cat' ? links.adoptCats : links.adoptOther;
+
+// Path to a file in public/, respecting the deploy base path (e.g. /austin-pets-alive on GitHub Pages).
+export const asset = (path: string) => import.meta.env.BASE_URL.replace(/\/$/, '') + path;
