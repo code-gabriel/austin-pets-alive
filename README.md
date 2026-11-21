@@ -4,6 +4,8 @@
 
 # Austin Pets Alive! Homepage Redesign
 
+**Live demo: https://code-gabriel.github.io/austin-pets-alive/**
+
 A homepage redesign prototype for [Austin Pets Alive!](https://www.austinpetsalive.org) (APA!). It's meant to be modern, playful and easy to navigate, and still instantly recognizable as APA!.
 
 > **Prototype, not the official website.** Built as a volunteer hackathon project to propose a refresh. Pet listings and blog posts are sample content.
