@@ -10,8 +10,8 @@ const year = new Date().getFullYear();
   <div class="wrap">
     <div class="newsletter">
       <div>
-        <h2>Get stories of lives saved</h2>
-        <p>One email a month. Urgent needs, success stories, and events.</p>
+        <h2>Get happy tails in your inbox 💌</h2>
+        <p>One email a month: success stories, urgent needs, and events.</p>
       </div>
       <form onsubmit="return false" class="nl-form">
         <label for="nl-email" class="sr-only">Email address</label>
@@ -22,7 +22,7 @@ const year = new Date().getFullYear();
 
     <div class="grid">
       <div class="contact">
-        <p class="brand">Austin Pets Alive!</p>
+        <p class="brand"><img src="/apa-logo.svg" alt="Austin Pets Alive!" width="286" height="45" loading="lazy" /></p>
         <address>
           1156 West Cesar Chavez<br />Austin, TX 78703
         </address>
@@ -50,23 +50,30 @@ const year = new Date().getFullYear();
 </footer>
 
 <style>
-  .footer { background: #1f1716; color: #e9e2e0; padding: 64px 0 32px; }
-  .footer a { color: #e9e2e0; text-decoration: none; }
+  .footer { background: var(--maroon-deep); color: #f6e9e4; padding: 64px 0 32px; }
+  .footer a { color: #f6e9e4; text-decoration: none; }
   .footer a:hover { color: var(--sun); text-decoration: underline; }
-  .newsletter { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,.12); }
-  .newsletter h2 { font-size: 1.6rem; color: #fff; margin-bottom: .25em; }
-  .newsletter p { margin: 0; opacity: .8; }
+  .newsletter {
+    display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap;
+    background: var(--orange); color: #fff; border-radius: 28px; padding: clamp(24px, 4vw, 40px);
+    box-shadow: 8px 8px 0 var(--sun);
+  }
+  .newsletter h2 { font-size: clamp(1.5rem, 3vw, 2rem); color: #fff; margin-bottom: .25em; }
+  .newsletter p { margin: 0; color: #2e1110; font-weight: 700; }
   .nl-form { display: flex; gap: 8px; flex: 1; max-width: 460px; min-width: 260px; }
-  .nl-form input { flex: 1; min-width: 0; padding: .8em 1.1em; border-radius: 999px; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.06); color: #fff; font: inherit; }
-  .nl-form button { cursor: pointer; font-family: inherit; }
-  .grid { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 32px; padding: 48px 0; }
-  .brand { font-weight: 800; font-size: 1.25rem; color: #fff; }
+  .nl-form input { flex: 1; min-width: 0; padding: .85em 1.2em; border-radius: 999px; border: 2px solid var(--maroon-deep); background: #fff; color: var(--ink); font: inherit; }
+  .nl-form .btn-primary { background: var(--maroon-deep); box-shadow: 0 5px 0 #2a0f0e; }
+  .grid { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 32px; padding: 56px 0 40px; }
+  .brand { margin-bottom: 1.2em; }
+  .brand img { height: 32px; width: auto; max-width: 100%; filter: brightness(0) invert(1); }
   address { font-style: normal; margin-bottom: 1em; }
-  .footer h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: var(--sun); margin-bottom: 1em; }
+  .footer h3 { font-family: var(--font); font-size: .82rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--sun); margin-bottom: 1em; }
   .footer ul { list-style: none; margin: 0; padding: 0; }
-  .footer li { margin-bottom: .5em; }
+  .footer li { margin-bottom: 0; }
+  .footer li a { display: inline-block; padding: 6px 0; }
   .social { display: flex; gap: 16px; flex-wrap: wrap; }
-  .legal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: .9rem; opacity: .75; border-top: 1px solid rgba(255,255,255,.12); padding-top: 24px; }
+  .contact a, .legal a { display: inline-block; padding: 12px 0; margin: -12px 0; }
+  .legal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: .9rem; opacity: .75; border-top: 1px solid rgba(255,255,255,.15); padding-top: 24px; }
   .legal p { margin: 0; }
   .proto-note { font-size: .8rem; opacity: .55; margin: 16px 0 0; }
   @media (max-width: 860px) { .grid { grid-template-columns: 1fr 1fr; } .contact { grid-column: 1 / -1; } }

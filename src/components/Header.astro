@@ -9,15 +9,14 @@ const nav = [
 ---
 <div class="campaign" role="region" aria-label="Current campaign">
   <div class="wrap campaign-inner">
-    <p><strong>Wrap a Pet in 2X the Love.</strong> 200 gifts unlock a $20,000 match this season.</p>
+    <p><span class="gift" aria-hidden="true">🎁</span> <strong>Wrap a Pet in 2X the Love.</strong><span class="campaign-detail"> 200 gifts unlock a $20,000 match this season.</span></p>
     <a href="#donate" class="campaign-link">Double my gift →</a>
   </div>
 </div>
 <header class="site-header">
   <div class="wrap bar">
-    <a href="/" class="logo" aria-label="Austin Pets Alive! home">
-      <span class="logo-mark" aria-hidden="true">APA!</span>
-      <span class="logo-text">Austin Pets Alive!</span>
+    <a href="/" class="logo">
+      <img src="/apa-logo.svg" alt="Austin Pets Alive! home" width="286" height="45" />
     </a>
 
     <nav class="nav-desktop" aria-label="Main">
@@ -37,35 +36,41 @@ const nav = [
 </header>
 
 <style>
-  .campaign { background: var(--maroon-deep); color: #fff; font-size: .92rem; }
+  .campaign { background: var(--sun); color: var(--maroon-deep); font-size: .95rem; }
   .campaign-inner { display: flex; gap: 12px 20px; justify-content: center; align-items: center; flex-wrap: wrap; padding: 10px 0; text-align: center; }
   .campaign p { margin: 0; }
-  .campaign-link { color: var(--sun); font-weight: 700; text-decoration: none; }
-  .campaign-link:hover { text-decoration: underline; }
+  .campaign-link { display: inline-block; padding: 10px 0; margin: -10px 0; color: var(--maroon); font-weight: 800; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
 
-  .site-header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.94); backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--line); }
-  .bar { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 72px; }
-  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .logo-mark { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--orange); color: #fff; font-weight: 800; font-size: .95rem; letter-spacing: -.02em; }
-  .logo-text { font-weight: 800; font-size: 1.2rem; color: var(--maroon); letter-spacing: -.02em; }
+  .site-header { position: sticky; top: 0; z-index: 50; background: rgba(255,248,242,.92); backdrop-filter: saturate(1.4) blur(10px); }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 80px; }
+  .logo { display: flex; align-items: center; flex-shrink: 1; min-width: 0; padding: 6px 0; transition: transform .2s; }
+  .logo img { height: 36px; width: auto; max-width: 100%; }
+  .logo:hover { transform: rotate(-1.5deg) scale(1.02); }
 
   .nav-desktop ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
-  .nav-desktop a { display: block; padding: 8px 14px; border-radius: 999px; text-decoration: none; font-weight: 600; color: var(--ink); }
-  .nav-desktop a:hover { background: var(--cream); color: var(--maroon); }
+  .nav-desktop a { display: block; padding: 10px 16px; border-radius: 999px; text-decoration: none; font-weight: 700; color: var(--ink); transition: background .15s; }
+  .nav-desktop a:hover { background: var(--t-peach); color: var(--maroon); }
 
   .actions { display: flex; align-items: center; gap: 10px; }
   .nav-mobile { display: none; position: relative; }
-  .nav-mobile summary { list-style: none; cursor: pointer; width: 44px; height: 44px; display: grid; place-content: center; gap: 5px; border-radius: 10px; border: 1px solid var(--line); }
+  .nav-mobile summary { list-style: none; cursor: pointer; width: 46px; height: 46px; display: grid; place-content: center; gap: 5px; border-radius: 14px; background: #fff; border: 2px solid var(--ink); }
   .nav-mobile summary::-webkit-details-marker { display: none; }
-  .nav-mobile summary span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; }
-  .nav-mobile nav { position: absolute; right: 0; top: 54px; width: min(80vw, 280px); background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 20px 40px rgba(0,0,0,.12); padding: 8px; }
+  .nav-mobile summary span { display: block; width: 20px; height: 2.5px; background: var(--ink); border-radius: 2px; }
+  .nav-mobile nav { position: absolute; right: 0; top: 58px; width: min(80vw, 280px); background: #fff; border: 2px solid var(--ink); border-radius: 20px; box-shadow: 6px 6px 0 var(--sun); padding: 8px; }
   .nav-mobile ul { list-style: none; margin: 0; padding: 0; }
-  .nav-mobile a { display: block; padding: 12px 14px; border-radius: 10px; text-decoration: none; font-weight: 600; }
-  .nav-mobile a:hover { background: var(--cream); }
+  .nav-mobile a { display: block; padding: 12px 14px; border-radius: 12px; text-decoration: none; font-weight: 700; }
+  .nav-mobile a:hover { background: var(--t-peach); }
 
   @media (max-width: 900px) {
     .nav-desktop { display: none; }
     .nav-mobile { display: block; }
   }
-  @media (max-width: 420px) { .logo-text { display: none; } }
+  @media (max-width: 600px) {
+    .campaign-detail { display: none; }
+    .campaign-inner { gap: 12px; padding: 10px 0; }
+    .bar { gap: 12px; height: 68px; }
+    .logo img { height: 26px; }
+    .actions .btn { padding: .65em 1.1em; }
+  }
+  @media (max-width: 359px) { .logo img { height: 20px; } }
 </style>
