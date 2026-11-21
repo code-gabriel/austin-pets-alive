@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import pets from '../data/pets.json';
 import posts from '../data/posts.json';
 import sponsors from '../data/sponsors.json';
+import { links, speciesLink } from '../data/links';
 
 const img = (url: string, w: number) => `${url}?auto=format&fit=crop&w=${w}&q=70`;
 const fmt = (d: string) => new Date(d + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
@@ -23,10 +24,10 @@ const icons = {
   loop: '<path d="M12 4a8 8 0 0 1 7.4 5H22l-3.5 4.5L15 9h2.2A6 6 0 0 0 6.1 10.5L4.2 9.9A8 8 0 0 1 12 4zm-7.5 6.5L8 15H5.8a6 6 0 0 0 11.1 1.5l1.9.6A8 8 0 0 1 4.6 15H2z"/>',
 };
 const ways = [
-  { t: 'Adopt', d: 'Meet dogs, cats and more who are ready for a couch of their own.', cta: 'See available pets', href: '#pets', icon: icons.heart, tint: 'var(--t-peach)', fg: 'var(--orange-strong)' },
-  { t: 'Foster', d: 'Open your home for a few weeks. We cover supplies and vet care.', cta: 'Become a foster', href: '#', icon: icons.home, tint: 'var(--t-sky)', fg: '#0675a0' },
-  { t: 'Volunteer', d: 'Walk dogs, snuggle kittens, or help at events and thrift stores.', cta: 'Find a shift', href: '#', icon: icons.hand, tint: 'var(--t-leaf)', fg: '#4f6a1c' },
-  { t: 'Give monthly', d: 'Constant Companions fund lifesaving care every single month.', cta: 'Join Constant Companions', href: '#donate', icon: icons.loop, tint: 'var(--t-butter)', fg: 'var(--maroon)' },
+  { t: 'Adopt', d: 'Meet dogs, cats and more who are ready for a couch of their own.', cta: 'See available pets', href: links.adopt, icon: icons.heart, tint: 'var(--t-peach)', fg: 'var(--orange-strong)' },
+  { t: 'Foster', d: 'Open your home for a few weeks. We cover supplies and vet care.', cta: 'Become a foster', href: links.foster, icon: icons.home, tint: 'var(--t-sky)', fg: '#0675a0' },
+  { t: 'Volunteer', d: 'Walk dogs, snuggle kittens, or help at events and thrift stores.', cta: 'Find a shift', href: links.volunteer, icon: icons.hand, tint: 'var(--t-leaf)', fg: '#4f6a1c' },
+  { t: 'Give monthly', d: 'Constant Companions fund lifesaving care every single month.', cta: 'Join Constant Companions', href: links.giveMonthly, icon: icons.loop, tint: 'var(--t-butter)', fg: 'var(--maroon)' },
 ];
 const petTint: Record<string, string> = { Dog: 'var(--t-sky)', Cat: 'var(--t-butter)' };
 const tilts = ['-3deg', '2deg', '-2deg', '3deg', '-1deg', '2deg'];
@@ -44,8 +45,8 @@ const tilts = ['-3deg', '2deg', '-2deg', '3deg', '-1deg', '2deg'];
           <h1>We save the pets <span class="hl">other shelters</span> can't.</h1>
           <p class="lead">Parvo puppies, bottle-baby kittens, the shy ones and the senior ones. Austin Pets Alive! builds first-of-their-kind programs so every pet gets a second chance.</p>
           <div class="hero-ctas">
-            <a class="btn btn-primary" href="#pets">Find your new best friend</a>
-            <a class="btn btn-ghost" href="#donate">Donate</a>
+            <a class="btn btn-primary" href={links.adopt}>Find your new best friend</a>
+            <a class="btn btn-ghost" href={links.donate}>Donate</a>
           </div>
         </div>
         <div class="hero-art">
@@ -99,9 +100,9 @@ const tilts = ['-3deg', '2deg', '-2deg', '3deg', '-1deg', '2deg'];
             <h2>Meet your new <span class="hl">best friend</span></h2>
           </div>
           <div class="pet-filters" aria-label="Browse by type">
-            <a href="#" class="chip">🐶 Dogs</a>
-            <a href="#" class="chip">🐱 Cats</a>
-            <a href="#" class="chip">🐰 Others</a>
+            <a href={links.adoptDogs} class="chip">🐶 Dogs</a>
+            <a href={links.adoptCats} class="chip">🐱 Cats</a>
+            <a href={links.adoptOther} class="chip">🐰 Others</a>
           </div>
         </div>
         <ul class="pets">
@@ -115,7 +116,7 @@ const tilts = ['-3deg', '2deg', '-2deg', '3deg', '-1deg', '2deg'];
                 <h3>{p.name}</h3>
                 <p class="pet-meta">{p.sex} · {p.age}</p>
                 <p>{p.blurb}</p>
-                <a href="#" class="link-arrow">Meet {p.name} →</a>
+                <a href={speciesLink(p.species)} class="link-arrow">Meet {p.name} →</a>
               </div>
             </li>
           ))}
@@ -132,12 +133,12 @@ const tilts = ['-3deg', '2deg', '-2deg', '3deg', '-1deg', '2deg'];
           <h2>Help the pets who need us <span class="hl hl-dark">most</span></h2>
           <p>Parvo puppies, neonatal kittens, cats with FeLV, dogs with big feelings. Your donation goes to the animals other shelters turn away.</p>
         </div>
-        <form class="give" onsubmit="return false" aria-label="Donation amount">
+        <form class="give" action={links.donate} method="get" onsubmit="location.href=this.freq.value;return false" aria-label="Donation amount">
           <fieldset>
             <legend class="sr-only">Frequency</legend>
             <div class="toggle">
-              <label><input type="radio" name="freq" checked /> <span>Monthly 💛</span></label>
-              <label><input type="radio" name="freq" /> <span>One time</span></label>
+              <label><input type="radio" name="freq" value={links.giveMonthly} checked /> <span>Monthly 💛</span></label>
+              <label><input type="radio" name="freq" value={links.donate} /> <span>One time</span></label>
             </div>
           </fieldset>
           <fieldset>
@@ -163,7 +164,7 @@ const tilts = ['-3deg', '2deg', '-2deg', '3deg', '-1deg', '2deg'];
             <span class="eyebrow"><Fragment set:html={paw} /> Latest news</span>
             <h2>Tales from the shelter</h2>
           </div>
-          <a href="#" class="link-arrow">All stories →</a>
+          <a href={links.blog} class="link-arrow">All stories →</a>
         </div>
         <div class="posts">
           {posts.map((p) => (
@@ -171,7 +172,7 @@ const tilts = ['-3deg', '2deg', '-2deg', '3deg', '-1deg', '2deg'];
               <img src={img(p.img, 700)} alt="" loading="lazy" width="700" height="420" />
               <div class="post-body">
                 <p class="post-meta"><span class="tag">{p.tag}</span> <time datetime={p.date}>{fmt(p.date)}</time></p>
-                <h3><a href="#">{p.title}</a></h3>
+                <h3><a href={p.url}>{p.title}</a></h3>
               </div>
             </article>
           ))}
@@ -187,7 +188,7 @@ const tilts = ['-3deg', '2deg', '-2deg', '3deg', '-1deg', '2deg'];
             <span class="eyebrow"><Fragment set:html={paw} /> Thank you</span>
             <h2 id="sponsors-title">Our amazing sponsors</h2>
           </div>
-          <a href="#" class="link-arrow">Become a sponsor →</a>
+          <a href={links.sponsorships} class="link-arrow">Become a sponsor →</a>
         </div>
         <ul class="sponsors">
           {sponsors.map((s) => (

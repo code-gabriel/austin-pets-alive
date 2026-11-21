@@ -1,8 +1,9 @@
 ---
+import { links } from '../data/links';
 const cols = [
-  { h: 'Help pets', links: ['Adopt', 'Foster', 'Volunteer', 'Donate', 'Pet Help'] },
-  { h: 'About', links: ['Our Story', 'Programs', 'Our Numbers', 'Leadership', 'Careers'] },
-  { h: 'More', links: ['Events', 'Thrift Stores', 'News & Blog', 'Locations & Contact', 'Volunteer Login'] },
+  { h: 'Help pets', links: [['Adopt', links.adopt], ['Foster', links.foster], ['Volunteer', links.volunteer], ['Donate', links.donate], ['Pet Help', links.petHelp]] },
+  { h: 'About', links: [['Our Story', links.ourStory], ['Programs', links.programs], ['Our Numbers', links.numbers], ['Leadership', links.leadership], ['Careers', links.careers]] },
+  { h: 'More', links: [['Events', links.events], ['Thrift Stores', links.thrift], ['News & Blog', links.blog], ['Locations & Contact', links.contact], ['Volunteer Login', links.volunteerLogin]] },
 ];
 const year = new Date().getFullYear();
 ---
@@ -13,7 +14,7 @@ const year = new Date().getFullYear();
         <h2>Get happy tails in your inbox 💌</h2>
         <p>One email a month: success stories, urgent needs, and events.</p>
       </div>
-      <form onsubmit="return false" class="nl-form">
+      <form action={links.newsletter} method="get" onsubmit={`location.href='${links.newsletter}';return false`} class="nl-form">
         <label for="nl-email" class="sr-only">Email address</label>
         <input id="nl-email" type="email" placeholder="you@example.com" required />
         <button class="btn btn-primary" type="submit">Sign up</button>
@@ -36,14 +37,14 @@ const year = new Date().getFullYear();
       {cols.map((c) => (
         <nav aria-label={c.h}>
           <h3>{c.h}</h3>
-          <ul>{c.links.map((l) => <li><a href="#">{l}</a></li>)}</ul>
+          <ul>{c.links.map(([label, href]) => <li><a href={href}>{label}</a></li>)}</ul>
         </nav>
       ))}
     </div>
 
     <div class="legal">
       <p>© {year} Austin Pets Alive! · 501(c)(3) nonprofit</p>
-      <p><a href="#">Privacy Policy</a> · <a href="#">Donor Privacy Policy</a></p>
+      <p><a href={links.privacy}>Privacy Policy</a> · <a href={links.donorPrivacy}>Donor Privacy Policy</a></p>
     </div>
     <p class="proto-note">Redesign prototype. Not the official Austin Pets Alive! website.</p>
   </div>

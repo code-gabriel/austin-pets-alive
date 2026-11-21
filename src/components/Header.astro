@@ -1,16 +1,17 @@
 ---
+import { links } from '../data/links';
 const nav = [
-  { label: 'Adopt', href: '#pets' },
-  { label: 'Foster', href: '#help' },
-  { label: 'Volunteer', href: '#help' },
-  { label: 'Get Pet Help', href: '#help' },
-  { label: 'About', href: '#impact' },
+  { label: 'Adopt', href: links.adopt },
+  { label: 'Foster', href: links.foster },
+  { label: 'Volunteer', href: links.volunteer },
+  { label: 'Get Pet Help', href: links.petHelp },
+  { label: 'About', href: links.about },
 ];
 ---
 <div class="campaign" role="region" aria-label="Current campaign">
   <div class="wrap campaign-inner">
     <p><span class="gift" aria-hidden="true">🎁</span> <strong>Wrap a Pet in 2X the Love.</strong><span class="campaign-detail"> 200 gifts unlock a $20,000 match this season.</span></p>
-    <a href="#donate" class="campaign-link">Double my gift →</a>
+    <a href={links.campaign} class="campaign-link">Double my gift →</a>
   </div>
 </div>
 <header class="site-header">
@@ -24,7 +25,7 @@ const nav = [
     </nav>
 
     <div class="actions">
-      <a class="btn btn-primary" href="#donate">Donate</a>
+      <a class="btn btn-primary" href={links.donate}>Donate</a>
       <details class="nav-mobile">
         <summary aria-label="Open menu"><span></span><span></span><span></span></summary>
         <nav aria-label="Mobile">
