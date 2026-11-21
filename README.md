@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="public/apa-logo.svg" alt="Austin Pets Alive!" width="420" />
+</p>
+
 # Austin Pets Alive! Homepage Redesign
 
 A homepage redesign prototype for [Austin Pets Alive!](https://www.austinpetsalive.org) (APA!). It's meant to be modern, playful and easy to navigate, and still instantly recognizable as APA!.
